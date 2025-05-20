@@ -16,7 +16,7 @@ An interactive web-based financial advisor bot that helps users with various fin
 
 1. Clone this repository:
 ```bash
-git clone https://github.com/yourusername/financial-advisor-bot.git
+git clone https://github.com/Sanskar121543/Financial-bot.git
 ```
 
 2. Open `index.html` in your web browser
