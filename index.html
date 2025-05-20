@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Advisor Bot</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3 sidebar">
+                <h2 class="text-center mt-4">Financial Advisor</h2>
+                <div class="nav flex-column nav-pills mt-4">
+                    <button class="nav-link active" data-section="chat">Chat with Advisor</button>
+                    <button class="nav-link" data-section="calculators">Financial Calculators</button>
+                    <button class="nav-link" data-section="market">Market Analysis</button>
+                    <button class="nav-link" data-section="budget">Budget Planner</button>
+                    <button class="nav-link" data-section="health">Financial Health</button>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-9 main-content">
+                <!-- Chat Section -->
+                <div class="section active" id="chat-section">
+                    <div class="chat-container">
+                        <div class="chat-messages" id="chat-messages">
+                            <div class="message bot">
+                                Hello! I'm your financial advisor. How can I help you today?
+                            </div>
+                        </div>
+                        <div class="chat-input">
+                            <input type="text" id="user-input" placeholder="Type your message...">
+                            <button id="send-btn">Send</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Calculators Section -->
+                <div class="section" id="calculators-section">
+                    <h3>Financial Calculators</h3>
+                    <div class="calculator-container">
+                        <div class="calculator">
+                            <h4>Loan Calculator</h4>
+                            <div class="form-group">
+                                <label>Loan Amount ($)</label>
+                                <input type="number" id="loan-amount" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>Interest Rate (%)</label>
+                                <input type="number" id="interest-rate" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>Loan Term (years)</label>
+                                <input type="number" id="loan-term" class="form-control">
+                            </div>
+                            <button class="btn btn-primary" onclick="calculateLoan()">Calculate</button>
+                            <div id="loan-result"></div>
+                        </div>
+
+                        <div class="calculator">
+                            <h4>Investment Calculator</h4>
+                            <div class="form-group">
+                                <label>Initial Investment ($)</label>
+                                <input type="number" id="initial-investment" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>Monthly Contribution ($)</label>
+                                <input type="number" id="monthly-contribution" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>Expected Return (%)</label>
+                                <input type="number" id="expected-return" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>Time Period (years)</label>
+                                <input type="number" id="time-period" class="form-control">
+                            </div>
+                            <button class="btn btn-primary" onclick="calculateInvestment()">Calculate</button>
+                            <div id="investment-result"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Market Analysis Section -->
+                <div class="section" id="market-section">
+                    <h3>Market Analysis</h3>
+                    <div class="market-container">
+                        <div class="stock-search">
+                            <input type="text" id="stock-symbol" placeholder="Enter stock symbol (e.g., AAPL)">
+                            <button onclick="searchStock()">Search</button>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="stock-chart"></canvas>
+                        </div>
+                        <div id="stock-info"></div>
+                    </div>
+                </div>
+
+                <!-- Budget Planner Section -->
+                <div class="section" id="budget-section">
+                    <h3>Budget Planner</h3>
+                    <div class="budget-container">
+                        <div class="income-section">
+                            <h4>Income</h4>
+                            <div class="form-group">
+                                <label>Monthly Income ($)</label>
+                                <input type="number" id="monthly-income" class="form-control">
+                            </div>
+                        </div>
+                        <div class="expenses-section">
+                            <h4>Expenses</h4>
+                            <div id="expenses-list">
+                                <!-- Expenses will be added here dynamically -->
+                            </div>
+                            <button class="btn btn-secondary" onclick="addExpense()">Add Expense</button>
+                        </div>
+                        <div class="budget-summary">
+                            <canvas id="budget-chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Financial Health Section -->
+                <div class="section" id="health-section">
+                    <h3>Financial Health Score</h3>
+                    <div class="health-container">
+                        <div class="health-score">
+                            <div class="score-circle">
+                                <span id="health-score">0</span>
+                            </div>
+                        </div>
+                        <div class="health-metrics">
+                            <div class="metric">
+                                <label>Emergency Fund</label>
+                                <input type="number" id="emergency-fund" class="form-control">
+                            </div>
+                            <div class="metric">
+                                <label>Monthly Savings Rate (%)</label>
+                                <input type="number" id="savings-rate" class="form-control">
+                            </div>
+                            <div class="metric">
+                                <label>Debt-to-Income Ratio (%)</label>
+                                <input type="number" id="debt-income-ratio" class="form-control">
+                            </div>
+                            <button class="btn btn-primary" onclick="calculateHealthScore()">Calculate Score</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 
